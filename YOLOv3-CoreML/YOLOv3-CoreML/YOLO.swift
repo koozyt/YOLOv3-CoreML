@@ -17,7 +17,7 @@ class YOLO {
     let rect: CGRect
   }
 
-  let model = YOLOv3()
+  let model = Yolov3Ginza()
 
   public init() { }
 
@@ -38,7 +38,7 @@ class YOLO {
 
     let blockSize: Float = 32
     let boxesPerCell = 3
-    let numClasses = 80
+    let numClasses = NumberOfClasses
 
     // The 416x416 image is divided into a 13x13 grid. Each of these grid cells
     // will predict 5 bounding boxes (boxesPerCell). A bounding box consists of

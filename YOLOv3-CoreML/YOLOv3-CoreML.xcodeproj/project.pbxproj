@@ -17,7 +17,8 @@
 		7BC25FA41EF1B7D1002ECBBA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC25FA31EF1B7D1002ECBBA /* ViewController.swift */; };
 		7BC25FA71EF1B7D1002ECBBA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BC25FA51EF1B7D1002ECBBA /* Main.storyboard */; };
 		7BC25FA91EF1B7D1002ECBBA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BC25FA81EF1B7D1002ECBBA /* Assets.xcassets */; };
-		7BC25FB41EF1CEB0002ECBBA /* YOLOv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 7BC25FB31EF1CEAE002ECBBA /* YOLOv3.mlmodel */; };
+		FD3F79CE21AD0D8C00E240FA /* YOLOv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = FD3F79CD21AD0D8C00E240FA /* YOLOv3.mlmodel */; };
+		FDB2B3B121AD0DE500173479 /* Yolov3Ginza.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = FDB2B3B021AD0DE500173479 /* Yolov3Ginza.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,8 +33,9 @@
 		7BC25FA61EF1B7D1002ECBBA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7BC25FA81EF1B7D1002ECBBA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7BC25FAD1EF1B7D1002ECBBA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7BC25FB31EF1CEAE002ECBBA /* YOLOv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = YOLOv3.mlmodel; sourceTree = "<group>"; };
 		7BC25FB51EF27C0D002ECBBA /* VideoCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCapture.swift; sourceTree = "<group>"; };
+		FD3F79CD21AD0D8C00E240FA /* YOLOv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = YOLOv3.mlmodel; path = "../../YOLOv3 CoreML model/YOLOv3.mlmodel"; sourceTree = "<group>"; };
+		FDB2B3B021AD0DE500173479 /* Yolov3Ginza.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = Yolov3Ginza.mlmodel; path = ../../Convert/Yolov3Ginza.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,8 @@
 		7BC25FA01EF1B7D1002ECBBA /* YOLOv3-CoreML */ = {
 			isa = PBXGroup;
 			children = (
+				FDB2B3B021AD0DE500173479 /* Yolov3Ginza.mlmodel */,
+				FD3F79CD21AD0D8C00E240FA /* YOLOv3.mlmodel */,
 				372CB263209C9B2600F501E3 /* BoundingBox.swift */,
 				372CB264209C9B2600F501E3 /* Helpers.swift */,
 				372CB261209C9B0F00F501E3 /* AppDelegate.swift */,
@@ -73,7 +77,6 @@
 				7BA1C6D91EF2B30200BB25EF /* CVPixelBuffer+Helpers.swift */,
 				7BC25FAD1EF1B7D1002ECBBA /* Info.plist */,
 				7BC25FA51EF1B7D1002ECBBA /* Main.storyboard */,
-				7BC25FB31EF1CEAE002ECBBA /* YOLOv3.mlmodel */,
 				7BA1C6D11EF2827500BB25EF /* UIImage+CVPixelBuffer.swift */,
 				7BC25FB51EF27C0D002ECBBA /* VideoCapture.swift */,
 				7BC25FA31EF1B7D1002ECBBA /* ViewController.swift */,
@@ -155,8 +158,9 @@
 			files = (
 				7BA1C6D01EF27DA000BB25EF /* VideoCapture.swift in Sources */,
 				7BA1C6DA1EF2B30200BB25EF /* CVPixelBuffer+Helpers.swift in Sources */,
-				7BC25FB41EF1CEB0002ECBBA /* YOLOv3.mlmodel in Sources */,
 				372CB265209C9B2600F501E3 /* BoundingBox.swift in Sources */,
+				FD3F79CE21AD0D8C00E240FA /* YOLOv3.mlmodel in Sources */,
+				FDB2B3B121AD0DE500173479 /* Yolov3Ginza.mlmodel in Sources */,
 				372CB266209C9B2600F501E3 /* Helpers.swift in Sources */,
 				372CB262209C9B0F00F501E3 /* AppDelegate.swift in Sources */,
 				7BA1C6D21EF2827800BB25EF /* UIImage+CVPixelBuffer.swift in Sources */,
@@ -289,7 +293,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: 1067837450@qq.com (EA34W5QFTF)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LXGRKDMEQU;
+				DEVELOPMENT_TEAM = CTBKSMZNSX;
 				GCC_OPTIMIZATION_LEVEL = s;
 				INFOPLIST_FILE = "YOLOv3-CoreML/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -309,7 +313,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: 1067837450@qq.com (EA34W5QFTF)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LXGRKDMEQU;
+				DEVELOPMENT_TEAM = CTBKSMZNSX;
 				INFOPLIST_FILE = "YOLOv3-CoreML/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "net.machinethink.YOLOv3-CoreML";
