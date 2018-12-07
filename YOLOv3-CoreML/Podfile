@@ -1,0 +1,8 @@
+
+# Podfile
+platform :ios, '12.0'
+use_frameworks!
+
+target 'YOLOv3-CoreML' do
+    pod "Kinetic",    '~> 1.0.1'
+end
