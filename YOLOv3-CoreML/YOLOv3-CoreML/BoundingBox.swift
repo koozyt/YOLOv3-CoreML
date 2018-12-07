@@ -5,6 +5,7 @@ class BoundingBox {
     let shapeLayer: CAShapeLayer
     let textLayer: CATextLayer
     let touchView: UIView
+    var closure = {};
     
     init() {
         shapeLayer = CAShapeLayer()
@@ -73,5 +74,11 @@ class BoundingBox {
     /// - Parameter btn: ボタン
     @objc func objectClick(btn : UIButton){
         print("TAP! \(String(describing: textLayer.string))");
+        
+        closure()
+    }
+    
+    func subscribeTouchEvent( touchEvent:@escaping () ->()){
+        closure = touchEvent
     }
 }
