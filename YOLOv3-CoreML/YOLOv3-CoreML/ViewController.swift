@@ -26,7 +26,8 @@ class ViewController: UIViewController {
   var frameCapturingStartTime = CACurrentMediaTime()
   let semaphore = DispatchSemaphore(value: 2)
 
-    var denilo:UIImageView? = nil
+    let overlay:UIImageView = UIImageView()
+    let closebutton:UIButton = UIButton()
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -105,10 +106,36 @@ class ViewController: UIViewController {
           box.addToLayer(self.videoPreview.layer)
             box.addToView(self.videoPreview)
             box.subscribeTouchEvent {
-
+                self.videoPreview.layer.addSublayer(self.overlay.layer)
+                self.videoPreview.layer.addSublayer(self.closebutton.layer)
             }
         }
         
+        let width = self.view.frame.width
+        let height = CGFloat((self.view.frame.width / 9) * 16) // 9:16比率
+        
+        
+        let x =  0
+        let y = (self.view.frame.height - height ) / 2
+        self.overlay.frame = CGRect(x: CGFloat(x),
+                                    y: y,
+                                    width: width,
+                                    height: height);
+        let image = UIImage(named:"wako_bg")
+        self.overlay.image = image
+        
+        
+        self.closebutton.frame = CGRect(x: width - ( self.view.frame.width / 10) * 1.5,
+                                        y: y+( self.view.frame.width / 10),// ( self.view.frame.width / 10) * 1.5,
+            width: width / 10,
+            height: width / 10);
+        let normal = UIImage(named:"wako_bt_close")
+        self.closebutton.setImage(normal, for: UIControlState.normal);
+        
+        
+
+
+
         //  レイヤーによる画像表示の方法
         /*
         let ovalShapeLayer = CAShapeLayer()
@@ -139,6 +166,10 @@ class ViewController: UIViewController {
         self.videoCapture.start()
       }
     }
+    
+   
+    
+
   }
 
     
