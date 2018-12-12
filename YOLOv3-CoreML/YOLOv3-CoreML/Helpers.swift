@@ -21,6 +21,14 @@ let labels = [
     "Wako", "Ginza4Chome", "Seiko", "Yamano"
 ]
 
+let circleImageFileNames = [
+    "top_wako.png","top_wako.png", "top_seiko.png", "top_yamano.png"
+]
+var circleImage:[UIImage] = []
+//  紐づけるファイル名が表示されれば良い
+
+
+
 let anchors: [[Float]] = [[116,90,  156,198,  373,326], [30,61,  62,45,  59,119], [10,13,  16,30,  33,23]]
 
 /**

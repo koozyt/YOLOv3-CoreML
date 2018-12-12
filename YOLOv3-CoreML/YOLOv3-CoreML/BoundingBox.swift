@@ -4,7 +4,7 @@ import UIKit
 class BoundingBox {
     let shapeLayer: CAShapeLayer
     let textLayer: CATextLayer
-    let touchView: UIView
+    let circleImageView:UIImageView
     var closure = {};
     
     init() {
@@ -21,17 +21,27 @@ class BoundingBox {
         textLayer.font = UIFont(name: "Avenir", size: textLayer.fontSize)
         textLayer.alignmentMode = kCAAlignmentCenter
         
-        //  タッチ用のビューを追加する
-        touchView =  UIView()
-        touchView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.objectClick(btn:))))
+        
+        
+        
+        circleImageView = UIImageView()
+        circleImageView.isUserInteractionEnabled = true
+        circleImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.objectClick(sender:))))
     }
 
     func addToLayer(_ parent: CALayer) {
         parent.addSublayer(shapeLayer)
         parent.addSublayer(textLayer)
-        parent.addSublayer(touchView.layer)
+        
+        //parent.addSublayer(circleImageView.layer)
+        //parent.addSublayer(touchView)
+    }
+    
+    func addToView(_ view: UIView) {
+        view.addSubview(circleImageView)
     }
 
+    //
     func show(frame: CGRect, label: String, color: UIColor) {
         CATransaction.setDisableActions(true)
 
@@ -55,24 +65,39 @@ class BoundingBox {
         let textOrigin = CGPoint(x: frame.origin.x - 2, y: frame.origin.y - textSize.height)
         textLayer.frame = CGRect(origin: textOrigin, size: textSize)
         
-        //  タッチ用ビューの情報を入力
-        touchView.frame = frame
-        touchView.backgroundColor = UIColor.clear
-        touchView.isHidden = false
+        //  イメージビューの情報を入力
+        circleImageView.frame = frame
         
+    }
+    
+    func show(frame: CGRect, image: UIImage, color: UIColor) {
+        
+        CATransaction.setDisableActions(true)
+        
+        var rect =  frame
+        if( frame.width > frame.height)
+        {
+            rect.size.height = rect.size.width
+        }else{
+            rect.size.width = rect.size.height
+        }
+        //  イメージビューの情報を入力
+        circleImageView.frame = rect
+        circleImageView.image = image
+        circleImageView.isHidden = false
     }
 
     func hide() {
         shapeLayer.isHidden = true
         textLayer.isHidden = true
-        touchView.isHidden = true
+        circleImageView.isHidden = true;
     }
     
     
     /// Viewタップ時の挙動
     ///
     /// - Parameter btn: ボタン
-    @objc func objectClick(btn : UIButton){
+    @objc func objectClick(sender: UITapGestureRecognizer){
         print("TAP! \(String(describing: textLayer.string))");
         
         closure()

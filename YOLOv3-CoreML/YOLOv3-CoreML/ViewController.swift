@@ -3,6 +3,7 @@ import Vision
 import AVFoundation
 import CoreMedia
 import VideoToolbox
+import Kinetic
 
 class ViewController: UIViewController {
   @IBOutlet weak var videoPreview: UIView!
@@ -25,11 +26,13 @@ class ViewController: UIViewController {
   var frameCapturingStartTime = CACurrentMediaTime()
   let semaphore = DispatchSemaphore(value: 2)
 
+    var denilo:UIImageView? = nil
   override func viewDidLoad() {
     super.viewDidLoad()
 
     timeLabel.text = ""
 
+    loadCircleImages();
     setUpBoundingBoxes()
     setUpCoreImage()
     setUpVision()
@@ -100,7 +103,37 @@ class ViewController: UIViewController {
         // Add the bounding box layers to the UI, on top of the video preview.
         for box in self.boundingBoxes {
           box.addToLayer(self.videoPreview.layer)
+            box.addToView(self.videoPreview)
+            box.subscribeTouchEvent {
+
+            }
         }
+        
+        //  レイヤーによる画像表示の方法
+        /*
+        let ovalShapeLayer = CAShapeLayer()
+        ovalShapeLayer.strokeColor = UIColor.blue.cgColor  // 輪郭は青
+        ovalShapeLayer.fillColor = UIColor.clear.cgColor  // 塗りはクリア
+        ovalShapeLayer.lineWidth = 1.0
+        ovalShapeLayer.path = UIBezierPath(ovalIn: CGRect(x:30, y:130, width:50, height:50)).cgPath
+        ovalShapeLayer.frame = CGRect(x: 0,
+                                      y: self.videoPreview.frame.height - self.videoPreview.frame.width,
+                                      width: self.videoPreview.frame.width,
+                                      height: self.videoPreview.frame.width);
+        let image = UIImage(named:"taxidriver")
+        ovalShapeLayer.contents = image?.cgImage
+        self.videoPreview.layer.addSublayer(ovalShapeLayer)
+        */
+        
+        
+        
+        
+        //self.videoPreview.layer.addSublayer(myButton.layer)
+        
+        
+        // ボタンをViewに追加する.
+        
+
 
         // Once everything is set up, we can start capturing live video.
         self.videoCapture.start()
@@ -108,6 +141,18 @@ class ViewController: UIViewController {
     }
   }
 
+    
+    /*
+     
+     ボタンのアクション時に設定したメソッド.
+     
+     */
+    /*
+    @objc func btnClick(btn: UIButton) {
+        print("btn clicked")
+      //  self.denilo?.removeFromSuperview()
+    }*/
+    
   // MARK: - UI stuff
 
   override func viewWillLayoutSubviews() {
@@ -232,12 +277,22 @@ class ViewController: UIViewController {
         // Show the bounding box.
         let label = String(format: "%@ %.1f", labels[prediction.classIndex], prediction.score * 100)
         let color = colors[prediction.classIndex]
-        boundingBoxes[i].show(frame: rect, label: label, color: color)
+        
+        //let img =
+        //boundingBoxes[i].show(frame: rect, label: label, color: color)
+        boundingBoxes[i].show(frame: rect, image: circleImage[prediction.classIndex], color: color)
       } else {
         boundingBoxes[i].hide()
       }
     }
   }
+    
+    func loadCircleImages(){
+        for imgName in circleImageFileNames{
+            circleImage.append(  UIImage(named: imgName)!)
+            
+        }
+    }
 }
 
 extension ViewController: VideoCaptureDelegate {
