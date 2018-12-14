@@ -332,7 +332,7 @@ class ViewController: UIViewController {
     }
     //  クローズボタンタップ時の処理
     @objc func closeBtnClick(sender: UITapGestureRecognizer){
-        print("close")
+        self.transitionCloseAnim(duration: 0.5)
     }
     
     //  遷移開始時のアニメーション
@@ -341,6 +341,22 @@ class ViewController: UIViewController {
         self.closebutton.tween().to( Alpha(1.0)).duration(TimeInterval(duration)).play()
         
         self.topbarImageView.tween().to( Alpha(0.0)).duration(TimeInterval(duration)).play()
+    }
+    
+    //  元画面遷移時のアニメーション
+    func transitionCloseAnim( duration: CGFloat){
+        
+        self.overlay.tween().to( Alpha(0.0)).duration(TimeInterval(duration)).on(.completed) {
+            (tween) -> Void in
+            self.overlay.removeFromSuperview();
+            }.play()
+        
+        self.closebutton.tween().to( Alpha(0.0)).duration(TimeInterval(duration)).on(.completed) {
+            (tween) -> Void in
+            self.closebutton.removeFromSuperview();
+            }.play()
+        
+        self.topbarImageView.tween().to( Alpha(1.0)).duration(TimeInterval(duration)).play()
     }
 }
 
