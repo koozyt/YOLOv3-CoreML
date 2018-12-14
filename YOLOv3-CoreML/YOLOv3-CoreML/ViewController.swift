@@ -108,8 +108,8 @@ class ViewController: UIViewController {
           box.addToLayer(self.videoPreview.layer)
             box.addToView(self.videoPreview)
             box.subscribeTouchEvent {
-                self.videoPreview.layer.addSublayer(self.overlay.layer)
-                self.videoPreview.layer.addSublayer(self.closebutton.layer)
+                self.videoPreview.addSubview(self.overlay)
+                self.videoPreview.addSubview(self.closebutton)
             }
         }
         
@@ -127,6 +127,7 @@ class ViewController: UIViewController {
         self.overlay.image = image
         
         
+        //  クローズボタン
         self.closebutton.frame = CGRect(x: width - ( self.view.frame.width / 10) * 1.5,
                                         y: y+( self.view.frame.width / 10),// ( self.view.frame.width / 10) * 1.5,
             width: width / 10,
@@ -134,7 +135,8 @@ class ViewController: UIViewController {
         let normal = UIImage(named:"wako_bt_close")
         self.closebutton.setImage(normal, for: UIControlState.normal);
         
-        
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(self.closeBtnClick(sender:)))
+        self.closebutton.addGestureRecognizer(gesture);
 
 
 
@@ -325,6 +327,10 @@ class ViewController: UIViewController {
             circleImage.append(  UIImage(named: imgName)!)
             
         }
+    }
+    //  クローズボタンタップ時の処理
+    @objc func closeBtnClick(sender: UITapGestureRecognizer){
+        print("close")
     }
 }
 
