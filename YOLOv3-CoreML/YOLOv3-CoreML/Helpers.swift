@@ -22,7 +22,7 @@ let labels = [
 ]
 
 let circleImageFileNames = [
-    "top_wako.png","top_wako.png", "top_seiko.png", "top_yamano.png"
+    "top_wako.png","top_seiko.png", "top_seiko.png", "top_yamano.png"
 ]
 var circleImage:[UIImage] = []
 //  紐づけるファイル名が表示されれば良い

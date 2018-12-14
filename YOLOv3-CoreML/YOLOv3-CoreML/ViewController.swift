@@ -30,9 +30,13 @@ class ViewController: UIViewController {
 
     let overlay:UIImageView = UIImageView()
     let closebutton:UIButton = UIButton()
+    var classIndexs: [Int] = []
+    var isTracking:Bool = true
+    
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    isTracking = true;
     timeLabel.text = ""
 
     loadCircleImages();
@@ -41,7 +45,7 @@ class ViewController: UIViewController {
     setUpVision()
     setUpCamera()
 
-    resultsView.isHidden = true;
+    resultsView.isHidden = true
     frameCapturingStartTime = CACurrentMediaTime()
   }
 
@@ -55,6 +59,7 @@ class ViewController: UIViewController {
   func setUpBoundingBoxes() {
     for _ in 0..<YOLO.maxBoundingBoxes {
       boundingBoxes.append(BoundingBox())
+        
     }
 
     // Make colors for the bounding boxes. There is one color for each class,
@@ -108,11 +113,27 @@ class ViewController: UIViewController {
         for box in self.boundingBoxes {
           box.addToLayer(self.videoPreview.layer)
             box.addToView(self.videoPreview)
-            box.subscribeTouchEvent {
+            box.subscribeTouchEvent(touchEvent: { (index) in
+                
+                //  wakoの場合オーバーレイを実行する
+                if( index == 0){
+                    self.isTracking = false
+                    self.videoPreview.addSubview(self.overlay)
+                    self.videoPreview.addSubview(self.closebutton)
+                    self.transitionStartAnim(duration: 0.5)
+
+                    for i in 0..<self.boundingBoxes.count
+                    {
+                        self.boundingBoxes[i].close()
+                    }
+                }
+            })
+            /*
+            box.subscribeTouchEvent {_ in (index)
                 self.videoPreview.addSubview(self.overlay)
                 self.videoPreview.addSubview(self.closebutton)
                 self.transitionStartAnim(duration: 0.5)
-            }
+            }*/
         }
         
         let width = self.view.frame.width
@@ -266,8 +287,9 @@ class ViewController: UIViewController {
       //VTCreateCGImageFromCVPixelBuffer(resizedPixelBuffer, nil, &debugImage)
       //self.debugImageView.image = UIImage(cgImage: debugImage!)
 
-      self.show(predictions: boundingBoxes)
-
+        if(self.isTracking){
+            self.show(predictions: boundingBoxes)
+        }
       let fps = self.measureFPS()
       self.timeLabel.text = String(format: "Elapsed %.5f seconds - %.2f FPS", elapsed, fps)
 
@@ -287,42 +309,54 @@ class ViewController: UIViewController {
     return currentFPSDelivered
   }
 
-  func show(predictions: [YOLO.Prediction]) {
-    for i in 0..<boundingBoxes.count {
-      if i < predictions.count {
-        let prediction = predictions[i]
+    func show(predictions: [YOLO.Prediction]) {
+        var hideIndexs = [0,1,2,3]
+        print("---------------")
+        for i in 0..<boundingBoxes.count
+        {
+            if i < predictions.count
+            {
+                let prediction = predictions[i]
 
-        // The predicted bounding box is in the coordinate space of the input
-        // image, which is a square image of 416x416 pixels. We want to show it
-        // on the video preview, which is as wide as the screen and has a 4:3
-        // aspect ratio. The video preview also may be letterboxed at the top
-        // and bottom.
-        let width = view.bounds.width
-        let height = width * 4 / 3
-        let scaleX = width / CGFloat(YOLO.inputWidth)
-        let scaleY = height / CGFloat(YOLO.inputHeight)
-        let top = (view.bounds.height - height) / 2
+                let width = view.bounds.width
+                let height = width * 4 / 3
+                let scaleX = width / CGFloat(YOLO.inputWidth)
+                let scaleY = height / CGFloat(YOLO.inputHeight)
+                let top = (view.bounds.height - height) / 2
 
-        // Translate and scale the rectangle to our own coordinate system.
-        var rect = prediction.rect
-        rect.origin.x *= scaleX
-        rect.origin.y *= scaleY
-        rect.origin.y += top
-        rect.size.width *= scaleX
-        rect.size.height *= scaleY
-
-        // Show the bounding box.
-        let label = String(format: "%@ %.1f", labels[prediction.classIndex], prediction.score * 100)
-        let color = colors[prediction.classIndex]
+                var rect = prediction.rect
+                rect.origin.x *= scaleX
+                rect.origin.y *= scaleY
+                rect.origin.y += top
+                rect.size.width *= scaleX
+                rect.size.height *= scaleY
+            
+                //  トラッキングしているindexを取得、格納
+                hideIndexs.remove(at: prediction.classIndex)
+                
+                let indexNo = classIndexs.index(of:prediction.classIndex)
+                            
+                var classIndex = 0
+                if indexNo != nil {
+                    classIndex = classIndexs[indexNo!]
+                }else{
+                
+                    classIndexs.append(prediction.classIndex)
+                    classIndex = prediction.classIndex
+                }
+                
+                print("classIndex : \(classIndex)")
+                
+                
+                boundingBoxes[classIndex].show(frame: rect, image: circleImage[classIndex], index:prediction.classIndex)
+            }
+        }
         
-        //let img =
-        //boundingBoxes[i].show(frame: rect, label: label, color: color)
-        boundingBoxes[i].show(frame: rect, image: circleImage[prediction.classIndex], color: color)
-      } else {
-        boundingBoxes[i].hide()
-      }
+        for classIndex in hideIndexs
+        {
+            boundingBoxes[classIndex].hide()
+        }
     }
-  }
     
     func loadCircleImages(){
         for imgName in circleImageFileNames{
@@ -333,6 +367,7 @@ class ViewController: UIViewController {
     //  クローズボタンタップ時の処理
     @objc func closeBtnClick(sender: UITapGestureRecognizer){
         self.transitionCloseAnim(duration: 0.5)
+        self.isTracking = true;
     }
     
     //  遷移開始時のアニメーション
