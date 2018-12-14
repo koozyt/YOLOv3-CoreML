@@ -11,6 +11,7 @@ class ViewController: UIViewController {
   @IBOutlet weak var debugImageView: UIImageView!
 
     @IBOutlet weak var resultsView: UIView!
+    @IBOutlet weak var topbarImageView: UIImageView!
     let yolo = YOLO()
 
   var videoCapture: VideoCapture!
@@ -110,6 +111,7 @@ class ViewController: UIViewController {
             box.subscribeTouchEvent {
                 self.videoPreview.addSubview(self.overlay)
                 self.videoPreview.addSubview(self.closebutton)
+                self.transitionStartAnim(duration: 0.5)
             }
         }
         
@@ -125,7 +127,7 @@ class ViewController: UIViewController {
                                     height: height);
         let image = UIImage(named:"wako_bg")
         self.overlay.image = image
-        
+        self.overlay.alpha = 0.0;
         
         //  クローズボタン
         self.closebutton.frame = CGRect(x: width - ( self.view.frame.width / 10) * 1.5,
@@ -137,7 +139,7 @@ class ViewController: UIViewController {
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(self.closeBtnClick(sender:)))
         self.closebutton.addGestureRecognizer(gesture);
-
+        
 
 
         //  レイヤーによる画像表示の方法
@@ -331,6 +333,14 @@ class ViewController: UIViewController {
     //  クローズボタンタップ時の処理
     @objc func closeBtnClick(sender: UITapGestureRecognizer){
         print("close")
+    }
+    
+    //  遷移開始時のアニメーション
+    func transitionStartAnim( duration: CGFloat){
+        self.overlay.tween().to( Alpha(1.0)).duration(TimeInterval(duration)).play()
+        self.closebutton.tween().to( Alpha(1.0)).duration(TimeInterval(duration)).play()
+        
+        self.topbarImageView.tween().to( Alpha(0.0)).duration(TimeInterval(duration)).play()
     }
 }
 

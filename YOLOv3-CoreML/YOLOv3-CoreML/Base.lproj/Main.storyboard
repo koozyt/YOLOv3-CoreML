@@ -72,6 +72,7 @@
                         <outlet property="debugImageView" destination="YNc-Bp-8Q7" id="Efd-I1-2Hu"/>
                         <outlet property="resultsView" destination="Cau-LW-nDZ" id="dFX-ft-vqz"/>
                         <outlet property="timeLabel" destination="Nv7-zv-Hv7" id="U6m-yA-4aP"/>
+                        <outlet property="topbarImageView" destination="hf3-dC-7Sh" id="EeB-sI-XSw"/>
                         <outlet property="videoPreview" destination="6b2-uP-TiX" id="F9M-LA-bjs"/>
                     </connections>
                 </viewController>
