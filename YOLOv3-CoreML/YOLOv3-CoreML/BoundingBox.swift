@@ -148,7 +148,6 @@ class BoundingBox {
     ///
     /// - Parameter btn: ボタン
     @objc func objectClick(sender: UITapGestureRecognizer){
-        print("TAP! \(String(describing: textLayer.string))");
         
         closure(classIndex)
     }

@@ -311,7 +311,7 @@ class ViewController: UIViewController {
 
     func show(predictions: [YOLO.Prediction]) {
         var hideIndexs = [0,1,2,3]
-        print("---------------")
+
         for i in 0..<boundingBoxes.count
         {
             if i < predictions.count
@@ -344,9 +344,6 @@ class ViewController: UIViewController {
                     classIndexs.append(prediction.classIndex)
                     classIndex = prediction.classIndex
                 }
-                
-                print("classIndex : \(classIndex)")
-                
                 
                 boundingBoxes[classIndex].show(frame: rect, image: circleImage[classIndex], index:prediction.classIndex)
             }
