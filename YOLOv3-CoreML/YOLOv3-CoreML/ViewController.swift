@@ -10,7 +10,8 @@ class ViewController: UIViewController {
   @IBOutlet weak var timeLabel: UILabel!
   @IBOutlet weak var debugImageView: UIImageView!
 
-  let yolo = YOLO()
+    @IBOutlet weak var resultsView: UIView!
+    let yolo = YOLO()
 
   var videoCapture: VideoCapture!
   var request: VNCoreMLRequest!
@@ -39,6 +40,7 @@ class ViewController: UIViewController {
     setUpVision()
     setUpCamera()
 
+    resultsView.isHidden = true;
     frameCapturingStartTime = CACurrentMediaTime()
   }
 
@@ -93,7 +95,7 @@ class ViewController: UIViewController {
     videoCapture = VideoCapture()
     videoCapture.delegate = self
     videoCapture.fps = 50
-    videoCapture.setUp(sessionPreset: AVCaptureSession.Preset.vga640x480) { success in
+    videoCapture.setUp(sessionPreset: AVCaptureSession.Preset.hd1280x720) { success in
       if success {
         // Add the video preview into the UI.
         if let previewLayer = self.videoCapture.previewLayer {
