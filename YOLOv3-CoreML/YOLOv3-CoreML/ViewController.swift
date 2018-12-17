@@ -332,7 +332,11 @@ class ViewController: UIViewController {
                 rect.size.height *= scaleY
             
                 //  トラッキングしているindexを取得、格納
-                hideIndexs.remove(at: prediction.classIndex)
+                let hideIndex = hideIndexs.index(of:prediction.classIndex)
+                if(hideIndex != nil)
+                {
+                    hideIndexs.remove(at:hideIndex!)
+                }
                 
                 let indexNo = classIndexs.index(of:prediction.classIndex)
                             
