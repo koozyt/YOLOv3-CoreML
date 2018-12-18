@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27AA3237F2FDA355BAF90F7F /* Pods_YOLOv3_CoreML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FE2207E35680454C29B9ADF /* Pods_YOLOv3_CoreML.framework */; };
 		372CB262209C9B0F00F501E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CB261209C9B0F00F501E3 /* AppDelegate.swift */; };
 		372CB265209C9B2600F501E3 /* BoundingBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CB263209C9B2600F501E3 /* BoundingBox.swift */; };
 		372CB266209C9B2600F501E3 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CB264209C9B2600F501E3 /* Helpers.swift */; };
@@ -25,6 +26,9 @@
 		372CB261209C9B0F00F501E3 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		372CB263209C9B2600F501E3 /* BoundingBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoundingBox.swift; sourceTree = "<group>"; };
 		372CB264209C9B2600F501E3 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		4BF149F9CBA79B96B584036C /* Pods-YOLOv3-CoreML.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YOLOv3-CoreML.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YOLOv3-CoreML/Pods-YOLOv3-CoreML.debug.xcconfig"; sourceTree = "<group>"; };
+		516AEFB7165E6B560B9409D2 /* Pods-YOLOv3-CoreML.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YOLOv3-CoreML.release.xcconfig"; path = "Pods/Target Support Files/Pods-YOLOv3-CoreML/Pods-YOLOv3-CoreML.release.xcconfig"; sourceTree = "<group>"; };
+		6FE2207E35680454C29B9ADF /* Pods_YOLOv3_CoreML.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YOLOv3_CoreML.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BA1C6D11EF2827500BB25EF /* UIImage+CVPixelBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+CVPixelBuffer.swift"; sourceTree = "<group>"; };
 		7BA1C6D71EF2871600BB25EF /* YOLO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YOLO.swift; sourceTree = "<group>"; };
 		7BA1C6D91EF2B30200BB25EF /* CVPixelBuffer+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CVPixelBuffer+Helpers.swift"; sourceTree = "<group>"; };
@@ -43,17 +47,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27AA3237F2FDA355BAF90F7F /* Pods_YOLOv3_CoreML.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		55B83065A7A11BFDD2D03836 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4BF149F9CBA79B96B584036C /* Pods-YOLOv3-CoreML.debug.xcconfig */,
+				516AEFB7165E6B560B9409D2 /* Pods-YOLOv3-CoreML.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		7BC25F951EF1B7D1002ECBBA = {
 			isa = PBXGroup;
 			children = (
 				7BC25FA01EF1B7D1002ECBBA /* YOLOv3-CoreML */,
 				7BC25F9F1EF1B7D1002ECBBA /* Products */,
+				55B83065A7A11BFDD2D03836 /* Pods */,
+				9DEEF6E9AE3E62C49AB1F28B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -85,6 +101,14 @@
 			path = "YOLOv3-CoreML";
 			sourceTree = "<group>";
 		};
+		9DEEF6E9AE3E62C49AB1F28B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6FE2207E35680454C29B9ADF /* Pods_YOLOv3_CoreML.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -92,9 +116,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7BC25FB01EF1B7D1002ECBBA /* Build configuration list for PBXNativeTarget "YOLOv3-CoreML" */;
 			buildPhases = (
+				EEB24946AC0ECF06F8C0012F /* [CP] Check Pods Manifest.lock */,
 				7BC25F9A1EF1B7D1002ECBBA /* Sources */,
 				7BC25F9B1EF1B7D1002ECBBA /* Frameworks */,
 				7BC25F9C1EF1B7D1002ECBBA /* Resources */,
+				26A3830CE014CB1A4B6914A3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -150,6 +176,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		26A3830CE014CB1A4B6914A3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-YOLOv3-CoreML/Pods-YOLOv3-CoreML-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Kinetic/Kinetic.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kinetic.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YOLOv3-CoreML/Pods-YOLOv3-CoreML-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EEB24946AC0ECF06F8C0012F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-YOLOv3-CoreML-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7BC25F9A1EF1B7D1002ECBBA /* Sources */ = {
@@ -229,7 +294,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -278,7 +343,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -288,9 +353,10 @@
 		};
 		7BC25FB11EF1B7D1002ECBBA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4BF149F9CBA79B96B584036C /* Pods-YOLOv3-CoreML.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = CTBKSMZNSX;
@@ -308,9 +374,10 @@
 		};
 		7BC25FB21EF1B7D1002ECBBA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 516AEFB7165E6B560B9409D2 /* Pods-YOLOv3-CoreML.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = CTBKSMZNSX;
